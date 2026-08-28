@@ -1,0 +1,152 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot (Real)</title>
+  <style>
+    body {
+      background: #f0f2f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .chat-container {
+      background: white;
+      width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background: #0078ff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      max-width: 75%;
+      line-height: 1.4;
+    }
+
+    .user {
+      align-self: flex-end;
+      background: #dcf8c6;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background: #f1f0f0;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .chat-input button {
+      background: #0078ff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+    }
+
+    .chat-input button:hover {
+      background: #005fd1;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🤖 Real AI Chatbot</div>
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">Hello! I'm your AI assistant. How can I help you today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+
+    async function sendMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      appendMessage('user', message);
+      userInput.value = '';
+
+      appendMessage('bot', 'Thinking...');
+
+      try {
+        const reply = await getAIResponse(message);
+        document.querySelector('.bot:last-child').innerText = reply;
+      } catch (err) {
+        document.querySelector('.bot:last-child').innerText = '⚠️ Error getting response.';
+        console.error(err);
+      }
+    }
+
+    function appendMessage(sender, text) {
+      const msg = document.createElement('div');
+      msg.className = `message ${sender}`;
+      msg.innerText = text;
+      chatBox.appendChild(msg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function getAIResponse(prompt) {
+      const apiKey = "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"; // 🔑 Replace with your OpenAI API key
+
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-3.5-turbo",
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+
+      const data = await response.json();
+      return data.choices[0].message.content.trim();
+    }
+  </script>
+</body>
+</html>
+ -->
