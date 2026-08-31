@@ -1,4 +1,3 @@
-हो
 
 ````markdown
 # 🤖 AI Chatbot
